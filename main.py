@@ -21,7 +21,7 @@ def get_hot_take() -> str:
     output = openai.Completion.create(
         model="text-davinci-002",
         prompt="Hot Take:", # change this if you want different posts :)
-        max_tokens = 260/4, # tokens are openai values of text length that the AI 
+        max_tokens = int(260/4), # tokens are openai values of text length that the AI 
         # understands words / character groups in they have a rough character
         # length of 4 and as such are roughly 3/4's of a word, I've found though that
         # they are quite often longer thann that so I reduced my max char length to 260
@@ -175,7 +175,7 @@ def do_job() -> None:
     tweet_hot_take(hot_take)
 
 if __name__ == "__main__":
-    #"""
+    """
     # I've not used schedule before so this is new, stackoverflow gave me this one though
     schedule.every().day.at("10:00").do(do_job)
 
@@ -184,7 +184,7 @@ if __name__ == "__main__":
         schedule.run_pending()
 
         time.sleep(60)# makes sure it only runs ONCE a day
-    #"""
+    """
     do_job()
     # TODO: maybe deal with comments at some point
     pass
